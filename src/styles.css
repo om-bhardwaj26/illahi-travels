@@ -1,0 +1,116 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sunset: var(--sunset);
+  --color-sunset-foreground: var(--sunset-foreground);
+  --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Himalayan adventure: deep midnight teal + warm sunset + soft cream */
+  --background: oklch(0.98 0.008 80);          /* warm off-white */
+  --foreground: oklch(0.18 0.04 220);          /* deep midnight */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 220);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 220);
+  --primary: oklch(0.24 0.06 215);             /* deep teal navy */
+  --primary-foreground: oklch(0.98 0.008 80);
+  --secondary: oklch(0.95 0.012 80);
+  --secondary-foreground: oklch(0.18 0.04 220);
+  --muted: oklch(0.95 0.012 80);
+  --muted-foreground: oklch(0.45 0.02 220);
+  --accent: oklch(0.92 0.04 60);
+  --accent-foreground: oklch(0.18 0.04 220);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.012 80);
+  --input: oklch(0.9 0.012 80);
+  --ring: oklch(0.24 0.06 215);
+  --sunset: oklch(0.72 0.17 45);               /* warm orange */
+  --sunset-foreground: oklch(0.18 0.04 220);
+
+  --gradient-hero: linear-gradient(180deg, oklch(0.18 0.04 220 / 0.25) 0%, oklch(0.12 0.04 220 / 0.85) 100%);
+  --gradient-sunset: linear-gradient(135deg, oklch(0.78 0.16 60), oklch(0.65 0.2 30));
+  --gradient-mountain: linear-gradient(135deg, oklch(0.24 0.06 215), oklch(0.32 0.08 200));
+  --shadow-elegant: 0 30px 80px -30px oklch(0.18 0.04 220 / 0.45);
+  --shadow-card: 0 1px 2px oklch(0.18 0.04 220 / 0.06), 0 12px 32px -16px oklch(0.18 0.04 220 / 0.18);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-sunset { background-image: var(--gradient-sunset); }
+  .bg-gradient-mountain { background-image: var(--gradient-mountain); }
+  .text-gradient-sunset {
+    background-image: var(--gradient-sunset);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .divider-line {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+  }
+  .divider-line::before, .divider-line::after {
+    content: ""; display: block; width: 2rem; height: 1px;
+    background: currentColor; opacity: 0.4;
+  }
+}
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-float-up { animation: float-up 1s ease-out both; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 40s linear infinite; }
